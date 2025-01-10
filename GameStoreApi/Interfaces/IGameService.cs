@@ -2,5 +2,5 @@ namespace GameStoreApi.Interfaces;
 
 public interface IGameService
 {
-    string GetTestMessage();
+    Task<String> FetchGamesAsync();
 }
