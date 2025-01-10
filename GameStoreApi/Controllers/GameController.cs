@@ -13,10 +13,18 @@ public class GameController : ControllerBase
     {
         _gameService = gameService;
     }
-    
-    [HttpGet("test")]
-    public IActionResult TestEndpoint()
+
+    [HttpGet("all")]
+    public async Task<IActionResult> GetAllGames()
     {
-        return Ok(_gameService.GetTestMessage());
+        try
+        {
+            var games = await _gameService.FetchGamesAsync();
+            return Ok(games);
+        }
+        catch (HttpRequestException ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
     }
 }
