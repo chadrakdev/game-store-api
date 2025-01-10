@@ -1,0 +1,88 @@
+# Rider project files
+.idea/
+*.sln.iml
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.csproj.user
+
+# Rider working directories
+.idea/
+.idea_modules/
+.idea/workspace.xml
+
+# Build files
+bin/
+obj/
+out/
+
+# Dependencies
+*.dll
+*.exe
+*.so
+*.dylib
+*.log
+*.lock
+*.pdb
+*.cache
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Logs and database
+*.log
+*.sql
+*.sqlite
+
+# Dotnet-specific files
+.vscode/
+.vs/
+*.pidb
+*.aps
+*.suo
+*.user
+*.userprefs
+*.pfx
+*.p12
+
+# Generated files
+*.generated.cs
+*.swagger*
+
+# NuGet dependencies
+*.nupkg
+*.snupkg
+*.symbols.nupkg
+.nuget/
+
+# npm dependencies (if used)
+node_modules/
+package-lock.json
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Runtime files
+*.runtimeconfig.dev.json
+*.runtimeconfig.json
+
+# Visual Studio specific
+.vs/
+.env
+.env.local
+
+# Additional files
+*.dbml
+*.classdiagram
+*.mdf
+*.ldf
+*.sqlproj.user
+.project
