@@ -18,6 +18,9 @@ public class Program
         
         // Register services for Dependency Injection
         builder.Services.AddScoped<IGameService, GameService>();
+        
+        // Add HttpClient to make HTTP requests
+        builder.Services.AddHttpClient();
 
         var app = builder.Build();
 
