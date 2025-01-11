@@ -15,8 +15,17 @@ public class GameController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAllGames()
+    public async Task<IActionResult> GetGames([FromQuery] int? id)
     {
+        if (id.HasValue)
+        {
+            var game = await _gameService.FetchGameByIdAsync(id.Value);
+
+            if (game == null) return NotFound($"Game with ID {id.Value} not found.");
+
+            return Ok(game);
+        }
+        
         try
         {
             var games = await _gameService.FetchGamesAsync();
