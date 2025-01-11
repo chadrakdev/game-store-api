@@ -8,6 +8,7 @@ namespace GameStoreApi.Services;
 public class GameService : IGameService
 {
     private readonly HttpClient _httpClient;
+    private readonly string _steamApiUrl = "https://api.steampowered.com/ISteamApps/GetAppList/v2/";
 
     public GameService(HttpClient httpClient)
     {
@@ -16,16 +17,14 @@ public class GameService : IGameService
 
     public async Task<List<Game>> FetchGamesAsync()
     {
-        const string steamApiUrl = "https://api.steampowered.com/ISteamApps/GetAppList/v2/";
-        https://api.steampowered.com/ISteamApps/GetAppList/v2/
-
         try
         {
-            var response = await _httpClient.GetStringAsync(steamApiUrl);
+            var response = await _httpClient.GetStringAsync(_steamApiUrl);
             var steamData = JsonConvert.DeserializeObject<SteamApiResponse>(response);
 
             var games = steamData.Applist.Apps.Select(app => new Game
             {
+                Id = app.AppId,
                 Name = app.Name,
                 Description = app.Description,
                 ImageUrl = app.ImageUrl,
@@ -51,5 +50,27 @@ public class GameService : IGameService
         {
             throw new Exception("An unexpected error occurred.", ex);
         }
+    }
+
+    public async Task<Game> FetchGameByIdAsync(int id)
+    {
+        var response = await _httpClient.GetStringAsync(_steamApiUrl);
+        var steamData = JsonConvert.DeserializeObject<SteamApiResponse>(response);
+
+        Console.WriteLine($"Requested GameID: {id}");
+
+        var game = steamData.Applist.Apps
+            .Where(app => app.AppId == id)
+            .Select(app => new Game
+            {
+                Name = app.Name,
+                Description = app.Description,
+                ImageUrl = app.ImageUrl,
+                Genre = app.Genre,
+                Price = app.Price
+            })
+            .FirstOrDefault();
+
+        return game;
     }
 }
