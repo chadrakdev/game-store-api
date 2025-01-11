@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GameStoreApi.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v1/[controller]")]
 public class GameController : ControllerBase
 {
     private readonly IGameService _gameService;
@@ -13,10 +13,18 @@ public class GameController : ControllerBase
     {
         _gameService = gameService;
     }
-    
-    [HttpGet("test")]
-    public IActionResult TestEndpoint()
+
+    [HttpGet]
+    public async Task<IActionResult> GetAllGames()
     {
-        return Ok(_gameService.GetTestMessage());
+        try
+        {
+            var games = await _gameService.FetchGamesAsync();
+            return Ok(games);
+        }
+        catch (HttpRequestException ex)
+        {
+            return StatusCode(500, ex.Message);
+        }
     }
 }

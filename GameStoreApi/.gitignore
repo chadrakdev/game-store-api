@@ -10,7 +10,6 @@
 *.csproj.user
 
 # Rider working directories
-.idea/
 .idea_modules/
 .idea/workspace.xml
 
@@ -37,7 +36,6 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # Logs and database
-*.log
 *.sql
 *.sqlite
 
@@ -46,9 +44,6 @@ $RECYCLE.BIN/
 .vs/
 *.pidb
 *.aps
-*.suo
-*.user
-*.userprefs
 *.pfx
 *.p12
 
@@ -66,18 +61,9 @@ $RECYCLE.BIN/
 node_modules/
 package-lock.json
 
-# JetBrains Rider
-.idea/
-*.sln.iml
-
 # Runtime files
 *.runtimeconfig.dev.json
 *.runtimeconfig.json
-
-# Visual Studio specific
-.vs/
-.env
-.env.local
 
 # Additional files
 *.dbml
