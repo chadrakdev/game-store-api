@@ -1,6 +1,8 @@
+using GameStoreApi.Models;
+
 namespace GameStoreApi.Interfaces;
 
 public interface IGameService
 {
-    Task<String> FetchGamesAsync();
+    Task<List<Game>> FetchGamesAsync();
 }
