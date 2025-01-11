@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace GameStoreApi.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/v1/[controller]")]
 public class GameController : ControllerBase
 {
     private readonly IGameService _gameService;
@@ -14,7 +14,7 @@ public class GameController : ControllerBase
         _gameService = gameService;
     }
 
-    [HttpGet("all")]
+    [HttpGet]
     public async Task<IActionResult> GetAllGames()
     {
         try
